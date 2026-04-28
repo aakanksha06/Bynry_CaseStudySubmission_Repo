@@ -1,3 +1,5 @@
+from flask import Flask, jsonify
+
 @app.route('/api/companies/<int:company_id>/alerts/low-stock', methods=['GET'])
 def low_stock_alerts(company_id):
     THRESHOLDS = {'standard': 20, 'perishable': 10}  # Rule 1: Threshold by type
@@ -66,3 +68,6 @@ def low_stock_alerts(company_id):
     except Exception as e:
         # EDGE CASE 5:
         return jsonify({'error': 'Service unavailable', 'details': str(e)}), 500
+
+if __name__ =="__main__":
+    app.run(debug=true, port=5001)
