@@ -1,3 +1,7 @@
+from flask import Flask, jsonify, request
+
+app=Flask(__name__)
+
 @app.route('/api/products', methods=['POST'])
 def create_product():
     data = request.json
@@ -34,3 +38,6 @@ warehouse_id=data['warehouse_id'],
      except Exception as e:
 	db.session.rollback()
 	return{“error” : str(e)}, 500
+
+if __name__ == '__main__':
+    app.run(debug=True)
